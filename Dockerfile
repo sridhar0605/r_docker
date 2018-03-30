@@ -61,14 +61,14 @@ RUN wget https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz --no-check-certi
     make install && \
     rm -rf /opt/R-3.3.3
 
-RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DESeq2")' && \
-    Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DEXSeq")' && \
-    Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("limma")' && \
-    Rscript -e 'install.packages(c("acepack", "RcppArmadillo", "statmod"))' && \
-    Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("BiocGenerics","biomaRt","Rsamtools","geneplotter","genefilter"));' && \
-    Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("BiocParallel","Biobase","SummarizedExperiment","IRanges","GenomicRanges","DESeq2","AnnotationDbi","S4Vectors"));' && \
-    Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("GenomicFeatures","pasilla","parathyroidSE","BiocStyle"));' && \
-    Rscript -e 'install.packages(c("hwriter","stringr", "statmod","RColorBrewer","knitr","ggplot2","dplyr","tidyverse","reshape2"))'
+RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DESeq2")' 
+RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DEXSeq")'
+RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("limma")'
+RUN Rscript -e 'install.packages(c("acepack", "RcppArmadillo", "statmod"))'
+RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("BiocGenerics","biomaRt","Rsamtools","geneplotter","genefilter"))'
+RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("BiocParallel","Biobase","SummarizedExperiment","IRanges","GenomicRanges","DESeq2","AnnotationDbi","S4Vectors"));'
+RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("GenomicFeatures","pasilla","parathyroidSE","BiocStyle"));'
+RUN Rscript -e 'install.packages(c("hwriter","stringr", "statmod","RColorBrewer","knitr","ggplot2","dplyr","tidyverse","reshape2"))'
 
 RUN chmod +x /usr/local/lib/R/library/DEXSeq/python_scripts/* && \
     ln -s /usr/local/lib/R/library/DEXSeq/python_scripts/ /opt/dexseq
