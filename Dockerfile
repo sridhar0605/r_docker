@@ -53,21 +53,21 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
     wget
 
 
-RUN wget https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz --no-check-certificate && \
-    tar -xzvf R-3.3.3.tar.gz -C /opt && \
+RUN wget -q https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz --no-check-certificate && \
+    tar -xzf R-3.3.3.tar.gz -C /opt && \
     cd /opt/R-3.3.3/ && \
     ./configure --with-x=no && \
     make && \
     make install && \
     rm -rf /opt/R-3.3.3
 
-RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DESeq2")' 
-RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DEXSeq")'
-RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("limma")'
+RUN Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite("DESeq2")' 
+RUN Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite("DEXSeq")'
+RUN Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite("limma")'
 RUN Rscript -e 'install.packages(c("acepack", "RcppArmadillo", "statmod"))'
-RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("BiocGenerics","biomaRt","Rsamtools","geneplotter","genefilter"))'
-RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("BiocParallel","Biobase","SummarizedExperiment","IRanges","GenomicRanges","DESeq2","AnnotationDbi","S4Vectors"));'
-RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("GenomicFeatures","pasilla","parathyroidSE","BiocStyle"));'
+RUN Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite(pkgs=c("BiocGenerics","biomaRt","Rsamtools","geneplotter","genefilter"))'
+RUN Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite(pkgs=c("BiocParallel","Biobase","SummarizedExperiment","IRanges","GenomicRanges","DESeq2","AnnotationDbi","S4Vectors"));'
+RUN Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite(pkgs=c("GenomicFeatures","pasilla","parathyroidSE","BiocStyle"));'
 RUN Rscript -e 'install.packages(c("hwriter","stringr", "statmod","RColorBrewer","knitr","ggplot2","dplyr","tidyverse","reshape2"))'
 
 RUN chmod +x /usr/local/lib/R/library/DEXSeq/python_scripts/* && \
