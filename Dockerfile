@@ -22,12 +22,13 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
 	libcairo2-dev \
     python-dev
 
-
-RUN wget -q https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz -O- | tar xz -C /opt/ && \
+WORKDIR /opt
+RUN wget -q https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz -O- | tar -xzf -C /opt/ && \
     cd /opt/R-3.3.3/ && \
     ./configure --with-x=no && \
     make && \
-    make install
+    make install && \
+    && rm -rf /opt/R-3.3.3
 
 RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DESeq2")' && \
     Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DEXSeq")' && \
@@ -42,12 +43,7 @@ RUN chmod +x /usr/local/lib/R/library/DEXSeq/python_scripts/* && \
     ln -s /usr/local/lib/R/library/DEXSeq/python_scripts/ /opt/dexseq
 
 RUN apt-get install patch
-COPY dexseq.patch /tmp/
 
-RUN patch -i /tmp/dexseq.patch /usr/local/lib/R/library/DEXSeq/python_scripts/dexseq_prepare_annotation.py 
-
-RUN echo 'alias dexseq_count="python /opt/dexseq/dexseq_count.py"' >> ~/.bashrc
-RUN echo 'alias dexseq_prepare_annotation="python /opt/dexseq/dexseq_prepare_annotation.py"' >> ~/.bashrc
 
 RUN apt-get install -y python-pip
 
