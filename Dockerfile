@@ -21,11 +21,11 @@ RUN \
 RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DESeq2")' && \
     Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DEXSeq")' && \
     Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("limma")' && \
-    RUN Rscript -e 'install.packages(c("acepack", "RcppArmadillo", "statmod"))' && \
-    RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("BiocGenerics","biomaRt","Rsamtools","geneplotter","genefilter"));' && \
-    RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("BiocParallel","Biobase","SummarizedExperiment","IRanges","GenomicRanges","DESeq2","AnnotationDbi","S4Vectors"));' && \
-    RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("GenomicFeatures","pasilla","parathyroidSE","BiocStyle"));' && \
-    RUN Rscript -e 'install.packages(c("hwriter","stringr", "statmod","RColorBrewer","knitr","ggplot2","dplyr","tidyverse","reshape2"))'
+    Rscript -e 'install.packages(c("acepack", "RcppArmadillo", "statmod"))' && \
+    Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("BiocGenerics","biomaRt","Rsamtools","geneplotter","genefilter"));' && \
+    Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("BiocParallel","Biobase","SummarizedExperiment","IRanges","GenomicRanges","DESeq2","AnnotationDbi","S4Vectors"));' && \
+    Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite(pkgs=c("GenomicFeatures","pasilla","parathyroidSE","BiocStyle"));' && \
+    Rscript -e 'install.packages(c("hwriter","stringr", "statmod","RColorBrewer","knitr","ggplot2","dplyr","tidyverse","reshape2"))'
 
 RUN \
     chmod +x /usr/local/lib/R/library/DEXSeq/python_scripts/* && \
@@ -51,7 +51,7 @@ RUN \
     apt-get remove -q -y unzip libncurses5-dev \
             libxml2-dev libreadline6-dev gfortran g++ gcc make \
         libpng-dev libjpeg-dev libcairo2-dev python-dev python-pip\
-    && apt-get autoremove -y
+    && apt-get autoremove -ys
    
 # needed for MGI data mounts
 RUN apt-get update && apt-get install -y libnss-sss && apt-get clean all
