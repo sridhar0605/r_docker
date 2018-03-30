@@ -7,19 +7,60 @@ LABEL docker_image R
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
     build-essential \
     bzip2 \
-    libcurl4-gnutls-dev \
-    libxml2 \
-    libxml2-dev \
-    libreadline6 \
-    libreadline6-dev \
-    wget \
-    gfortran \
+    RUN apt-get update && apt-get install -y --no-install-recommends locales && \
+    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
+    locale-gen en_US.UTF-8 && \
+    LC_ALL=en_US.UTF-8 && \
+    LANG=en_US.UTF-8 && \
+    /usr/sbin/update-locale LANG=en_US.UTF-8 && \
+    TERM=xterm && \
+    apt-get install -y --no-install-recommends \
+    bash-completion \
+    ca-certificates \
+    file \
+    fonts-texgyre \
     g++ \
-    gcc \
-    make \
-    libpng-dev \
+    gfortran \
+    gsfonts \
+    libbz2-1.0 \
+    libcurl3 \
+    libicu55 \
+    libjpeg-turbo8 \
+    libopenblas-dev \
+    libpangocairo-1.0-0 \
+    libpcre3 \
+    libpng12-0 \
+    libtiff5 \
+    liblzma5 \
+    locales \
+    zlib1g \
+    libbz2-dev \
+    libcairo2-dev \
+    libcurl4-openssl-dev \
+    libpango1.0-dev \
     libjpeg-dev \
-	libcairo2-dev \
+    libicu-dev \
+    libmariadb-client-lgpl-dev \
+    libmysqlclient-dev \
+    libpcre3-dev \
+    libpng-dev \
+    libreadline-dev \
+    libtiff5-dev \
+    liblzma-dev \
+    libx11-dev \
+    libxt-dev \
+    tcl8.5-dev \
+    tk8.5-dev \
+    texinfo \
+    texlive-extra-utils \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-latex-recommended \
+    x11proto-core-dev \
+    xauth \
+    xfonts-base \
+    xvfb \
+    zlib1g-dev
     python-dev
 
 
