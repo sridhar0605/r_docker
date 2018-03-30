@@ -9,14 +9,13 @@ RUN apt-get update --fix-missing \
                libreadline6-dev wget gfortran g++ gcc make libpng-dev libjpeg-dev \
 	       libcairo2-dev python-dev
 
-RUN \
-    wget -q https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz -O- \
-    | tar xz -C /opt/ \
-    && cd /opt/R-3.3.3/ \
-    && ./configure --with-x=no \
-    && make \
-    && make install \
-    && rm -rf /opt/R-3.3.3 
+
+RUN wget -q https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz | tar -xz -C /opt/ && \
+    cd /opt/R-3.3.3/ && \
+    ./configure --with-x=no && \
+    make && \
+    make install && \
+    rm -rf /opt/R-3.3.3 
 
 RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DESeq2")' && \
     Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DEXSeq")' && \
@@ -49,8 +48,8 @@ RUN pip install --upgrade pip \
 # Clean up
 RUN \
     apt-get remove -q -y unzip libncurses5-dev \
-            libxml2-dev libreadline6-dev gfortran g++ gcc make \
-        libpng-dev libjpeg-dev libcairo2-dev python-dev python-pip\
+    libxml2-dev libreadline6-dev gfortran g++ gcc make \
+    libpng-dev libjpeg-dev libcairo2-dev python-dev python-pip \
     && apt-get autoremove -ys
    
 # needed for MGI data mounts
