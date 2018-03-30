@@ -22,9 +22,9 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
 	libcairo2-dev \
     python-dev
 
-WORKDIR /opt
-RUN wget -q https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz && \
-    tar -xzf R-3.3.3.tar.gz -C /opt && \
+
+RUN wget https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz && \
+    tar -xzvf R-3.3.3.tar.gz -C /opt && \
     cd /opt/R-3.3.3/ && \
     ./configure --with-x=no && \
     make && \
