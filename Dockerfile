@@ -6,8 +6,8 @@ LABEL docker_image R
 
 RUN apt-get update -y && apt-get install -y --no-install-recommends && \
 #RUN apt-get update && apt-get install -y --no-install-recommends locales && \
-    g++ \
     build-essential \
+    g++ \
     bzip2 \
     gfortran \
     gsfonts \
