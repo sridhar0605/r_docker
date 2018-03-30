@@ -23,7 +23,7 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
     python-dev
 
 
-RUN wget https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz && \
+RUN wget https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz --no-check-certificate && \
     tar -xzvf R-3.3.3.tar.gz -C /opt && \
     cd /opt/R-3.3.3/ && \
     ./configure --with-x=no && \
