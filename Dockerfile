@@ -4,10 +4,8 @@ MAINTAINER sridhar <sridhar@wustl.edu>
 
 LABEL docker_image R
 
-RUN apt-get update -y && apt-get install -y --no-install-recommends \
-    build-essential \
-    bzip2 \
-    RUN apt-get update && apt-get install -y --no-install-recommends locales && \
+RUN apt-get update -y && apt-get install -y --no-install-recommends && \
+#RUN apt-get update && apt-get install -y --no-install-recommends locales && \
     echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
     locale-gen en_US.UTF-8 && \
     LC_ALL=en_US.UTF-8 && \
@@ -20,6 +18,8 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
     file \
     fonts-texgyre \
     g++ \
+    build-essential \
+    bzip2 \
     gfortran \
     gsfonts \
     libbz2-1.0 \
@@ -60,8 +60,9 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
     xauth \
     xfonts-base \
     xvfb \
-    zlib1g-dev
-    python-dev
+    zlib1g-dev \
+    python-dev \
+    wget
 
 
 RUN wget https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz --no-check-certificate && \
