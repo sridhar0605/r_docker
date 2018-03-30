@@ -28,7 +28,7 @@ RUN wget -q https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz -O- | tar -xz
     ./configure --with-x=no && \
     make && \
     make install && \
-    && rm -rf /opt/R-3.3.3
+    rm -rf /opt/R-3.3.3
 
 RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DESeq2")' && \
     Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DEXSeq")' && \
