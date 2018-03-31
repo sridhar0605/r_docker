@@ -62,6 +62,7 @@ RUN wget -q https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz --no-check-ce
     rm -rf /opt/R-3.3.3
 
 
+ADD r-packages.R /opt/
 RUN R -f /opt/r-packages.R
 
 RUN chmod +x /usr/local/lib/R/library/DEXSeq/python_scripts/* && \
