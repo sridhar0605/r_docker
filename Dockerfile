@@ -61,7 +61,7 @@ RUN wget -q https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz --no-check-ce
     make install && \
     rm -rf /opt/R-3.3.3
 
-RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DESeq2")' 
+RUN Rscript --help
 RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("DEXSeq")'
 RUN Rscript -e 'source("http://bioconductor.org/biocLite.R"); biocLite("limma")'
 RUN Rscript -e 'install.packages(c("acepack", "RcppArmadillo", "statmod"))'
@@ -91,5 +91,3 @@ RUN apt-get remove -q -y unzip libncurses5-dev && \
    
 # needed for MGI data mounts
 RUN apt-get update && apt-get install -y libnss-sss && apt-get clean all
-    
-RUN apt-get install -y libgfortran3 libgomp1 libcairo2 libjpeg8 python
