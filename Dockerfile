@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:xenial
 
 MAINTAINER sridhar <sridhar@wustl.edu>
 
@@ -6,6 +6,9 @@ LABEL docker_image R
 
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
     build-essential \
+    bash-completion \
+    ca-certificates \
+    file \
     g++ \
     bzip2 \
     gfortran \
