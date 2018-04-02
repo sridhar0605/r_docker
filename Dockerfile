@@ -68,8 +68,8 @@ RUN wget -q https://cran.r-project.org/src/base/R-3/R-3.3.3.tar.gz --no-check-ce
 ADD r-packages.R /opt/
 RUN R -f /opt/r-packages.R
 
-RUN chmod +x /usr/local/lib/R/library/DEXSeq/python_scripts/* && \
-    ln -s /usr/local/lib/R/library/DEXSeq/python_scripts/ /opt/dexseq
+#RUN chmod +x /usr/local/lib/R/library/DEXSeq/python_scripts/* && \
+#    ln -s /usr/local/lib/R/library/DEXSeq/python_scripts/ /opt/dexseq
 
 RUN apt-get install patch
 
