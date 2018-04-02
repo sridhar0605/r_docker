@@ -82,10 +82,13 @@ RUN pip install --upgrade pip \
     && pip install HTSeq
 
 # Clean up
-RUN apt-get remove -q -y unzip libncurses5-dev && \
-    libxml2-dev libreadline6-dev gfortran g++ gcc make && \
-    libpng-dev libjpeg-dev libcairo2-dev python-dev python-pip && \
-    apt-get autoremove -ys
+## Clean up
+   RUN cd / && \
+   rm -rf /opt/* && \
+   apt-get autoremove -y && \
+   apt-get autoclean -y && \
+   rm -rf /var/lib/apt/lists/* && \
+   apt-get clean
    
 # needed for MGI data mounts
 RUN apt-get update && apt-get install -y libnss-sss && apt-get clean all
